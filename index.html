@@ -1,422 +1,114 @@
-
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>תעלומת בריכות הדגים | חדר בריחה מדעי</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מבצע בריכות הדגים | חדר בריחה מדעי</title>
 <style>
-:root{
-  --navy:#102b3f;--blue:#176b87;--cyan:#58c6d5;
-  --teal:#1e9b87;--gold:#f0bd58;--cream:#f4f7f3;
-  --ink:#173447;--muted:#607987;--white:#fff;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:Arial,sans-serif;color:var(--ink);
-  background:linear-gradient(145deg,#dceef0,#f5f7f1 55%,#d7e9e5);
-  min-height:100vh;
-}
-header{
-  color:white;padding:30px 6%;position:relative;overflow:hidden;
-  background:linear-gradient(115deg,#102b3f,#176b87 65%,#168b83);
-}
-header:after{
-  content:"";position:absolute;width:340px;height:340px;border:1px solid #ffffff35;
-  border-radius:50%;left:-90px;top:-180px;
-  box-shadow:0 0 0 35px #ffffff0b,0 0 0 75px #ffffff0b;
-}
-.kicker{letter-spacing:2px;color:#bce9e6;font-size:12px;font-weight:bold}
-h1{font-size:clamp(30px,5vw,52px);margin:12px 0}
-header p{max-width:720px;line-height:1.8;color:#e2f3f3;font-size:17px}
-.header-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-.pill{border:1px solid #ffffff55;border-radius:30px;padding:8px 14px;font-size:13px}
-main{max-width:1100px;margin:28px auto;padding:0 18px}
-.progress-wrap{
-  background:white;border-radius:18px;padding:18px 22px;
-  box-shadow:0 8px 28px #17344712;margin-bottom:20px
-}
-.progress-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.progress{height:9px;background:#e6eff0;border-radius:20px;margin-top:13px;overflow:hidden}
-.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--cyan));transition:.5s}
-.layout{display:grid;grid-template-columns:245px 1fr;gap:20px}
-nav,.panel{background:white;border-radius:20px;box-shadow:0 8px 28px #17344712}
-nav{padding:16px;height:max-content}
-nav h3{margin:5px 8px 14px;font-size:15px;color:var(--muted)}
-.navitem{
-  display:flex;align-items:center;gap:10px;padding:12px 10px;
-  border-radius:12px;margin:5px 0;color:#607987;font-size:14px;
-  cursor:pointer;transition:.2s
-}
-.navitem.active{background:#e6f4f3;color:#126e69;font-weight:bold}
-.navitem.done{color:#16816f}
-.navnum{
-  width:27px;height:27px;border-radius:50%;display:grid;place-items:center;
-  background:#edf2f3;font-size:12px;font-weight:bold;flex-shrink:0
-}
-.navitem.active .navnum{background:var(--teal);color:white}
-.panel{padding:clamp(20px,4vw,38px);min-height:570px}
-.station-tag{color:var(--teal);font-weight:bold;font-size:13px;letter-spacing:1px}
-h2{font-size:clamp(24px,3vw,32px);margin:10px 0}
-.lead{color:var(--muted);line-height:1.8;margin-bottom:22px}
-.science-box{
-  background:#eef7f6;border-right:4px solid var(--teal);
-  border-radius:12px;padding:16px 18px;line-height:1.8;margin:18px 0
-}
-.data-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
-.data-table th{background:#173e53;color:white}
-.data-table td,.data-table th{padding:12px;text-align:center;border:1px solid #dce7e8}
-.data-table tr:nth-child(even){background:#f3f7f6}
-.question{font-size:18px;font-weight:bold;line-height:1.6;margin:22px 0 12px}
-.options{display:grid;gap:10px}
-.option{
-  border:1px solid #d5e2e4;border-radius:12px;padding:14px 16px;
-  cursor:pointer;background:white;text-align:right;font-size:15px;
-  color:var(--ink);transition:.2s
-}
-.option:hover{border-color:var(--teal);background:#f5fbfa}
-.option.selected{border:2px solid var(--teal);background:#eaf7f4}
-.option:disabled{cursor:default}
-button.primary,button.secondary{
-  border:0;border-radius:12px;padding:13px 22px;font-size:15px;
-  font-weight:bold;cursor:pointer;margin-top:18px
-}
-.primary{background:var(--navy);color:white}
-.primary:hover{background:var(--blue)}
-.secondary{background:#e7f1f1;color:#155b68}
-button:disabled{opacity:.4;cursor:not-allowed}
-.feedback{padding:14px;border-radius:12px;margin-top:16px;line-height:1.7;display:none}
-.feedback.good{display:block;background:#e7f6ef;color:#176348}
-.feedback.bad{display:block;background:#fff4e3;color:#805719}
-.chart{display:flex;align-items:flex-end;gap:18px;height:220px;padding:15px 12px 0;border-bottom:2px solid #8da7ad;margin:18px 0 8px}
-.bar-group{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px}
-.bar{width:min(58px,80%);background:linear-gradient(#55c5c4,#176b87);border-radius:8px 8px 0 0;position:relative;transition:height .5s}
-.bar strong{position:absolute;top:-25px;left:0;right:0;text-align:center;font-size:13px}
-.bar-label{font-size:12px;text-align:center;color:var(--muted)}
-.chart-note{font-size:12px;color:var(--muted);line-height:1.6}
-.simulator{background:#102e43;border-radius:18px;padding:18px;color:white;margin:18px 0}
-.pond{
-  height:180px;border-radius:12px;position:relative;overflow:hidden;
-  background:linear-gradient(#75c7d2,#237f9c);margin:12px 0;
-  border:3px solid #b6dadd
-}
-.pond:after{
- content:"";position:absolute;bottom:0;left:0;right:0;height:24px;
- background:#b6a77a
-}
-.pipe{position:absolute;top:30px;left:8%;right:8%;height:7px;background:#d5e1e0;border-radius:5px;z-index:2}
-.fish{position:absolute;font-size:27px;bottom:30px;transition:.5s;z-index:3}
-.bird{position:absolute;font-size:27px;top:62px;transition:.5s;z-index:3}
-.wave{position:absolute;top:36px;left:12%;right:12%;height:35px;border-top:3px dashed #fff;opacity:0}
-.pond.active .wave{opacity:1;animation:pulse .7s infinite alternate}
-.pond.active .bird{transform:translate(110px,-60px) rotate(-12deg)}
-.pond.active .fish{transform:translateY(18px)}
-@keyframes pulse{to{transform:scaleY(.35);opacity:.4}}
-.sim-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-input[type=range]{accent-color:#58c6d5;flex:1;min-width:140px}
-.sim-result{color:#c4eeee;line-height:1.7;margin-top:10px}
-.final-lock{
- text-align:center;padding:28px;background:linear-gradient(135deg,#102b3f,#176b87);
- color:white;border-radius:18px;margin-top:18px
-}
-.final-lock .big{font-size:54px}
-footer{text-align:center;color:#607987;font-size:13px;padding:30px 12px}
-.credit{font-weight:bold;color:#315d6c}
-.hidden{display:none!important}
-@media(max-width:760px){
- .layout{grid-template-columns:1fr}
- nav{display:flex;overflow-x:auto;gap:5px;padding:10px}
- nav h3{display:none}
- .navitem{min-width:48px;justify-content:center;padding:9px}
- .navitem .navtext{display:none}
- .panel{min-height:0}
-}
+:root{--bg1:#d7f5f0;--bg2:#fdf1d8;--card:#fff;--ink:#173747;--muted:#5f7b86;--soft:#edf7f5;--line:#d4e2e4;--c:#14b8a6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#06202e;--bg2:#1b1840;--card:#12303f;--ink:#e6f4f4;--muted:#9fc0c6;--soft:#17394a;--line:#2b5565}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;overflow-x:hidden}
+#bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}.bub{position:absolute;bottom:-60px;border-radius:50%;border:2px solid #fff9;background:#ffffff30;animation:rise linear infinite}@keyframes rise{to{transform:translateY(-115vh) translateX(30px)}}
+.sw{position:absolute;font-size:30px;opacity:.5;animation:swim linear infinite}@keyframes swim{from{transform:translateX(110vw)}to{transform:translateX(-20vw)}}
+#cf{position:fixed;inset:0;pointer-events:none;z-index:50}
+header,main,footer{position:relative;z-index:1}
+header{background:linear-gradient(115deg,#7c3aed,#0ea5e9 55%,#14b8a6);color:#fff;padding:28px max(5vw,20px) 34px;overflow:hidden}
+header:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:22px;background:radial-gradient(circle at 12px 22px,var(--bg1) 12px,transparent 13px) 0 0/24px 22px repeat-x}
+.kicker{font-size:12px;letter-spacing:2px;font-weight:bold;color:#fff3b0}h1{font-size:clamp(30px,5vw,52px);margin:10px 0}header p{max-width:760px;line-height:1.8;font-size:17px;margin:0}
+.meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.pill{border:1px solid #fff8;background:#ffffff22;border-radius:30px;padding:7px 12px;font-size:12px}
+main{max-width:1160px;margin:22px auto;padding:0 16px}
+.mission{background:linear-gradient(120deg,#ff6b6b,#ffa94d);color:#fff;border-radius:18px;padding:16px 20px;margin-bottom:16px;display:flex;gap:14px;align-items:center;box-shadow:0 8px 25px #ff6b6b44}.stamp{font-size:34px;animation:pulse 1.2s infinite}@keyframes pulse{50%{transform:scale(1.18)}}
+.status{display:grid;grid-template-columns:1fr auto;gap:14px;background:var(--card);padding:16px 20px;border-radius:16px;box-shadow:0 7px 24px #12394b1c;margin-bottom:18px}.statusline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:bold}.track{height:12px;background:var(--soft);border-radius:20px;overflow:hidden;margin-top:11px}.track div{height:100%;width:0;background:linear-gradient(90deg,#ff6b6b,#ffd43b,#51cf66,#339af0,#b197fc);transition:.6s}
+.hud{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--muted)}.hud b{color:var(--ink)}.snd{border:0;background:var(--soft);border-radius:10px;padding:8px 10px;cursor:pointer;font-size:16px}
+.layout{display:grid;grid-template-columns:235px 1fr;gap:18px}nav,.panel{background:var(--card);border-radius:20px;box-shadow:0 8px 28px #17344722}nav{padding:15px;height:max-content;position:sticky;top:12px}nav h3{margin:6px 8px 12px;color:var(--muted);font-size:14px}
+.navitem{display:flex;align-items:center;gap:10px;padding:10px 9px;border-radius:12px;margin:5px 0;color:var(--muted);font-size:13px;cursor:pointer;transition:.2s}.navitem:hover{background:var(--soft)}.navitem.active{background:var(--soft);color:var(--ink);font-weight:bold}.navitem.lockd{opacity:.45;cursor:not-allowed}
+.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--soft);font-weight:bold;flex-shrink:0;color:var(--ink)}.navitem.active .num,.navitem.done .num{background:var(--nc);color:#fff}
+.panel{padding:clamp(19px,3.5vw,36px);min-height:600px;border-top:6px solid var(--c);animation:in .45s}@keyframes in{from{opacity:0;transform:translateY(14px)}}
+.tag{color:var(--c);font-weight:bold;font-size:12px;letter-spacing:1px}.panel h2{font-size:clamp(24px,3vw,34px);margin:9px 0}.lead{color:var(--muted);line-height:1.8}
+.brief{background:var(--soft);border-right:5px solid var(--c);border-radius:12px;padding:15px 17px;line-height:1.8;margin:17px 0}
+.table{width:100%;border-collapse:collapse;margin:17px 0;font-size:14px;overflow:hidden;border-radius:12px}.table th{background:var(--c);color:#fff}.table td,.table th{border:1px solid var(--line);padding:11px;text-align:center}.table tr:nth-child(even){background:var(--soft)}
+.question{font-size:19px;font-weight:bold;line-height:1.6;margin:24px 0 12px}.opts{display:grid;gap:10px}
+.opt{border:2px solid var(--line);border-radius:14px;background:var(--card);padding:14px 16px;text-align:right;font-size:15px;line-height:1.5;color:var(--ink);cursor:pointer;transition:.2s;font-family:inherit}.opt:hover:not(:disabled){border-color:var(--c);transform:translateX(-4px)}.opt:disabled{cursor:default}
+.opt.right{border-color:#22c55e;background:#22c55e22;font-weight:bold}.opt.wrong{border-color:#f97316;background:#f9731622;opacity:.6;animation:shake .4s}@keyframes shake{25%{transform:translateX(8px)}75%{transform:translateX(-8px)}}
+.primary,.secondary,.hintbtn{border:0;border-radius:12px;padding:12px 20px;font-size:14px;font-weight:bold;cursor:pointer;margin-top:15px;font-family:inherit}.primary{background:var(--c);color:#fff;box-shadow:0 5px 14px #0003}.primary:hover{filter:brightness(1.1)}.secondary{background:var(--soft);color:var(--ink)}.hintbtn{background:transparent;color:var(--muted);text-decoration:underline}
+.feedback{display:none;padding:13px 15px;border-radius:12px;margin-top:14px;line-height:1.7}.feedback.good{display:block;background:#22c55e22;border:1px solid #22c55e}.feedback.bad{display:block;background:#f9731622;border:1px solid #f97316}
+.lock{background:linear-gradient(135deg,#312e81,#0e7490);color:#fff;border-radius:18px;padding:20px;margin:20px 0;text-align:center;animation:in .5s}.key{margin:10px 0;color:#fde68a}.key span{display:inline-block;background:#fde68a;color:#312e81;font-weight:bold;font-size:24px;padding:2px 14px;border-radius:10px;margin:0 6px}
+.dial{display:flex;flex-direction:column;align-items:center;gap:6px;margin:10px}.dial button{width:60px;border:0;border-radius:10px;background:#ffffff22;color:#fff;font-size:18px;padding:6px;cursor:pointer}.digit{width:70px;height:78px;border:2px solid #fff8;border-radius:14px;background:#0004;font-size:42px;display:grid;place-items:center}.unlock{font-weight:bold;min-height:24px;color:#bbf7d0}
+.chart{display:flex;align-items:flex-end;gap:15px;height:210px;padding:15px 12px 0;border-bottom:2px solid var(--muted);margin:22px 0 8px}.bargrp{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px}
+.bar{width:min(55px,80%);background:linear-gradient(#f472b6,#8b5cf6);border-radius:8px 8px 0 0;position:relative;animation:grow 1s}.bargrp:nth-child(2) .bar{background:linear-gradient(#fbbf24,#f97316)}.bargrp:nth-child(3) .bar{background:linear-gradient(#34d399,#0ea5e9)}.bargrp:nth-child(4) .bar{background:linear-gradient(#60a5fa,#6366f1)}@keyframes grow{from{height:0}}
+.bar b{position:absolute;top:-23px;left:-10px;right:-10px;text-align:center;font-size:13px}.barlabel{font-size:12px;text-align:center;color:var(--muted)}.note{font-size:12px;color:var(--muted);line-height:1.7}
+.sim{background:linear-gradient(135deg,#082f49,#312e81);color:#fff;border-radius:18px;padding:18px;margin:18px 0}
+.pond{height:200px;position:relative;overflow:hidden;border-radius:13px;border:2px solid #b4e3df;background:linear-gradient(#7dd3fc 0 20%,#0e7490 21% 84%,#c7b07a 85%);margin:13px 0}
+.tube{position:absolute;top:34px;left:6%;right:6%;height:5px;background:#fef3c7;border-radius:5px;transition:.4s}.pond.on .tube{background:#fb7185;animation:wig .3s infinite alternate}@keyframes wig{to{transform:translateY(7px) skewX(8deg)}}
+.bird{position:absolute;top:62px;left:62%;font-size:36px;transition:1.1s;z-index:2}.pond.on .bird{transform:translate(-260px,-70px) rotate(-18deg) scale(.5);opacity:.3}
+.fish{position:absolute;bottom:34px;font-size:28px;animation:fs 4s ease-in-out infinite alternate}.fish:nth-of-type(2){animation-duration:5s;bottom:60px}.fish:nth-of-type(3){animation-duration:3s;bottom:90px}@keyframes fs{from{transform:translateX(-50px)}to{transform:translateX(50px) scaleX(-1)}}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.simresult{color:#c5ece7;line-height:1.7;margin-top:10px}
+.days{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;margin:10px 0 4px}.days i{height:26px;border-radius:6px;background:#ffffff22;transition:.3s}.days i.f{outline:2px solid #fde68a}.days i.a{background:linear-gradient(#34d399,#0ea5e9)}
+.final{background:linear-gradient(135deg,#7c3aed,#0ea5e9,#14b8a6);color:#fff;text-align:center;border-radius:18px;padding:28px;margin:18px 0}.final .icon{font-size:64px;animation:pulse 1.4s infinite}
+.codes{display:flex;gap:8px;justify-content:center;margin:14px 0;direction:ltr}.codes span{width:46px;height:60px;display:grid;place-items:center;font-size:32px;font-weight:bold;background:#fff;color:#312e81;border-radius:10px;animation:flip .7s both}@keyframes flip{from{transform:rotateX(90deg);opacity:0}}
+.stars{font-size:34px;letter-spacing:6px}textarea{width:100%;min-height:90px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:12px;font-family:inherit;font-size:14px}
+.chk{display:block;margin:8px 0;line-height:1.6;cursor:pointer}
+.flow{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0}.flow span{background:#ffffff22;border-radius:12px;padding:8px 12px;text-align:center;font-size:14px}.flow small{color:#c5ece7}.tbs{position:absolute;top:30px;left:6%;right:6%;display:flex;justify-content:space-around}.tbs:before{content:"";position:absolute;top:-4px;left:0;right:0;height:5px;background:#fef3c7;border-radius:5px}.tb{width:22px;height:95px;border-radius:4px 4px 14px 14px;background:linear-gradient(#fb7185,#f59e0b);transform-origin:top;transform:scaleY(.3);transition:transform .6s}.pond.on .tb{animation:tsw .5s infinite alternate}.tb:nth-child(2n){animation-delay:.15s!important}.tb:nth-child(3n){animation-delay:.3s!important}@keyframes tsw{from{transform:rotate(-16deg) scaleY(1)}to{transform:rotate(16deg) scaleY(.82)}}
+.why{background:var(--soft);border-radius:12px;padding:10px 14px;margin:12px 0;font-size:14px;line-height:1.7;border-right:5px solid var(--c)}
+.mission{background:linear-gradient(120deg,#450a0a,#1e293b);box-shadow:0 8px 25px #ef444455;overflow:hidden;min-height:150px}.beacon{position:relative;width:120px;height:120px;flex-shrink:0}.beacon .rays{position:absolute;inset:-30px;border-radius:50%;background:conic-gradient(#ff2d2dcc 0 40deg,transparent 40deg 180deg,#ff2d2dcc 180deg 220deg,transparent 220deg);-webkit-mask:radial-gradient(circle,#000 25%,transparent 68%);mask:radial-gradient(circle,#000 25%,transparent 68%);animation:spin 1s linear infinite}.beacon .lamp{position:absolute;left:24px;right:24px;top:20px;bottom:36px;border-radius:50% 50% 6px 6px;background:radial-gradient(circle at 35% 30%,#fff 0,#ff4040 35%,#b91c1c);box-shadow:0 0 28px 8px #ff2d2d;animation:glow .5s infinite alternate}.beacon .base{position:absolute;left:14px;right:14px;bottom:10px;height:28px;border-radius:6px;background:#475569}@keyframes spin{to{transform:rotate(360deg)}}@keyframes glow{to{box-shadow:0 0 50px 18px #ff2d2d;filter:brightness(1.3)}}
+.scene{position:relative;height:215px;border-radius:18px;overflow:hidden;margin-bottom:16px;background:linear-gradient(#bae6fd 0 30%,#0ea5e9 31% 88%,#c7b07a 89%);box-shadow:0 8px 25px #0003}.pel{position:absolute;top:62px;width:11px;height:11px;border-radius:50%;background:#92400e;box-shadow:0 0 0 2px #fbbf24;animation:pel 9s infinite}@keyframes pel{0%,25%{opacity:1;transform:scale(1)}45%,80%{opacity:0;transform:scale(0)}95%,100%{opacity:1;transform:scale(1)}}.bd{position:absolute;top:28px;font-size:36px;animation:bfly 9s ease-in-out infinite}@keyframes bfly{0%{transform:translate(-560px,-50px)}15%{transform:translate(0,0)}25%{transform:translate(0,14px)}35%{transform:translate(0,0)}45%{transform:translate(0,14px)}60%,75%{transform:translate(0,0)}100%{transform:translate(-560px,-50px)}}.scap{position:absolute;left:0;right:0;bottom:0;background:#000a;color:#fff;padding:9px 14px;font-weight:bold;text-align:center;font-size:14px}.sel{width:100%;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--card);color:var(--ink);font-family:inherit;margin-top:4px}
+.hidden{display:none!important}footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}.credit{font-weight:bold;margin-top:6px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}nav{position:static;display:flex;overflow-x:auto;gap:4px;padding:8px}nav h3{display:none}#nav{display:flex;gap:6px}.navitem{white-space:nowrap;flex-shrink:0;padding:8px 12px;margin:0}.label{font-size:12px}.panel{min-height:0}.status{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header>
- <div class="kicker">מעבדת מחקר אקולוגית · חקלאות מים</div>
- <h1>תעלומת בריכות הדגים</h1>
- <p>מי אוכל את מזון הדגים? האם אפשר להגן על הבריכות בלי לפגוע בעופות ובדגים?
- אתם צוות חוקרים. פענחו נתונים, בדקו השערות וקבלו החלטה מדעית.</p>
- <div class="header-meta">
-  <span class="pill">🔬 חקר מדעי</span>
-  <span class="pill">📊 נתונים אמיתיים ממחקר</span>
-  <span class="pill">⏳ ללא הגבלת זמן</span>
- </div>
-</header>
-
+<div id="bg"></div><canvas id="cf"></canvas>
+<header><div class="kicker">יחידת חקר אקולוגית · חקלאות מים</div><h1>🐟 מבצע בריכות הדגים</h1>
+<p>אזעקה במרכז הבקרה: עופות מים מגיעים לבריכות ואוכלים את מזון הדגים. צוות המחקר נקרא למצוא פתרון — אבל אסור לפגוע בדגים או בעופות. כדי לפתוח את כספת הנתונים ולשחרר את דוח המחקר, תצטרכו לפענח שש ראיות מדעיות.</p>
+<div class="meta"><span class="pill">🔬 מבוסס מחקר</span><span class="pill">🔐 שש משימות וקודים</span><span class="pill">📊 נתונים וגרפים</span><span class="pill">⚙️ סימולציה אינטראקטיבית</span><span class="pill">✍️ מאת: מילכה ברקו גרש</span></div></header>
 <main>
- <section class="progress-wrap">
-  <div class="progress-top">
-   <strong id="progressText">תחנה 1 מתוך 5</strong>
-   <span id="scoreText">0 תחנות הושלמו</span>
-  </div>
-  <div class="progress"><div id="progressBar"></div></div>
- </section>
-
- <div class="layout">
-  <nav>
-   <h3>מסלול החקירה</h3>
-   <div class="navitem active" data-step="0"><span class="navnum">1</span><span class="navtext">זירת המחקר</span></div>
-   <div class="navitem" data-step="1"><span class="navnum">2</span><span class="navtext">פענוח הנתונים</span></div>
-   <div class="navitem" data-step="2"><span class="navnum">3</span><span class="navtext">הדגים מגיבים</span></div>
-   <div class="navitem" data-step="3"><span class="navnum">4</span><span class="navtext">הנדסה ותזמון</span></div>
-   <div class="navitem" data-step="4"><span class="navnum">5</span><span class="navtext">החלטת החוקרים</span></div>
-  </nav>
-
-  <section class="panel" id="content"></section>
- </div>
-</main>
-
-<footer>
- <div>מבוסס על מחקר משרד החקלאות – סיכום מחקר 21-3002-870, ינואר 2023</div>
- <div class="credit">עריכה: מילכה ברקו גרש</div>
-</footer>
-
+<div class="mission"><div class="beacon" aria-hidden="true"><i class="rays"></i><i class="lamp"></i><i class="base"></i></div><div><b>🚨 הבעיה:</b> במדגה מאכילים את הדגים בגלולות מזון יקרות שצפות על המים. עופות מים, כמו שחפים ואגמיות, מגיעים בלהקות ואוכלים את המזון לפני שהדגים מספיקים. המזון הוא ההוצאה הגדולה ביותר בגידול דגים, ולכן הדגים גדלים לאט והמדגה מפסיד כסף. אסור לפגוע בעופות או בדגים.<br><b>🎯 המשימה:</b> לבדוק פתרון שמרחיק את העופות בעדינות (צינוריות אוויר), ולהחליט אם כדאי להתקין אותו.<br><b>🧭 למה שש תחנות?</b> כל תחנה היא ראיה אחת להחלטה. בכל תחנה עונים על שאלה, מסובבים את המנעול ואוספים ספרה. בסוף פותחים את הכספת וכותבים למנהל המדגה המלצה שמבוססת על הראיות — לא על ניחוש.</div></div>
+<div class="scene" aria-label="הדמיית הבעיה"><div id="pel"></div><span class="bd" style="left:20%">🦆</span><span class="bd" style="left:42%;animation-delay:.6s">🦢</span><span class="bd" style="left:64%;animation-delay:1.2s">🕊️</span><span class="fish" style="left:22%;bottom:62px;animation-duration:4s">🐟</span><span class="fish" style="left:50%;bottom:90px;animation-duration:5s">🐠</span><span class="fish" style="left:72%;bottom:55px;animation-duration:3.5s">🐟</span><div class="scap">⚠️ עופות מים מגיעים ואוכלים את מזון הדגים — והדגים נשארים רעבים!</div></div>
+<section class="status"><div><div class="statusline"><span id="progressText"></span><span id="scoreText"></span></div><div class="track"><div id="progressBar"></div></div></div><div class="hud"><span>⏱️ <b id="timer">00:00</b></span><span>תיק 21-3002-870</span><button class="snd" id="snd" aria-label="צליל">🔊</button></div></section>
+<div class="layout"><nav><h3>לוח המשימות</h3><div id="nav"></div></nav><section class="panel" id="content" aria-live="polite"></section></div>
+</main><footer><div style="max-width:780px;margin:0 auto 12px;line-height:1.9;text-align:start"><b>📚 מקורות</b><br>בנט, עיינה ונאור, אלון (2023, פורסם 2024). <i>בחינה ופיתוח של מערכת צינוריות אוויר דחוס להרחקת עופות מים מאזורי האכלה בבריכות לגידול דגי מאכל בישראל</i> (סיכום מחקר מס׳ 21-3002-870). מחקר יישומי במימון קרן שה״מ. משרד החקלאות, שה״מ – הוצאה לאור. נדלה ב־16 בנובמבר 2026 מתוך: <a href="https://www.gov.il/BlobFolder/reports/air-duct-system-for-removing-birds/he/Professional_information_air-duct-system-removing-birds.pdf" target="_blank" rel="noopener" style="color:inherit">gov.il</a><br>הנתונים, הטבלאות והגרפים בפעילות מבוססים על הדוח ועובדו לצורכי לימוד. הערכים בגרפים מקורבים.</div><div class="credit">✍️ פעילות מאת: מילכה ברקו גרש</div></footer>
 <script>
-const state={step:0,done:[false,false,false,false,false],answers:{}};
-
-const stations=[
-{
- title:"זירת המחקר: מי מתחרה על המזון?",
- tag:"תחנה 1 · הגדרת הבעיה",
- intro:"בריכות דגים הן גם מערכת חקלאית לייצור מזון וגם בית גידול לעופות מים. חלק מהעופות טורפים דגים, ואחרים אוכלים את כופתיות המזון המיועדות לדגים.",
- body:`
- <div class="science-box"><b>שאלת המחקר:</b><br>
- כיצד אפשר לצמצם את אכילת מזון הדגים על ידי עופות מים, בלי לפגוע בדגים ובעופות?</div>
- <p>במחקר נבדקו, בין היתר, מגלנים, ברכיות, אגמיות ושחפי אגמים. מינים שונים מגיעים למזון בדרכים שונות.</p>
- <table class="data-table">
- <tr><th>עוף</th><th>דרך השגת המזון</th></tr>
- <tr><td>מגלן חום</td><td>מחפש מזון במים רדודים ובשולי הבריכה</td></tr>
- <tr><td>ברכיה</td><td>מסננת מזון צף בשכבת המים העליונה</td></tr>
- <tr><td>אגמיה</td><td>שוחה ומגיעה אל המזון הצף</td></tr>
- <tr><td>שחף אגמים</td><td>עט על המזון הצף ואוכל אותו במהירות</td></tr>
- </table>`,
- question:"מדוע חשוב לזהות אילו מיני עופות מגיעים לבריכה לפני שמתכננים אמצעי הרחקה?",
- options:[
- ["כי לכל המינים אותה דרך השגת מזון ולכן אין צורך להבחין ביניהם","לא נכון. מינים שונים ניזונים בדרכים שונות."],
- ["כי אמצעי יעיל למין אחד לא בהכרח יעיל למין אחר","נכון. דרך ההגעה למזון והתנהגות העופות משפיעות על התאמת הפתרון."],
- ["כי כל העופות טורפים דגים ולא אוכלים מזון מלאכותי","לא נכון. חלק מהמינים ניזונים מכופתיות המזון."],
- ["כי מספר העופות לבדו קובע את הצלחת הפתרון","לא נכון. יש חשיבות גם למין, להתנהגות ולתגובה לאמצעי." ]
- ],correct:1,
- explain:"היכרות עם התנהגות המינים מאפשרת לתכנן פתרון ממוקד. לדוגמה, עוף שמגיע למזון בשחייה אינו מתנהג כמו עוף שמלקט מזון בשולי המים."
-},
-{
- title:"פענוח הנתונים: שני אתרים, תמונה שונה",
- tag:"תחנה 2 · ניתוח והשוואה",
- intro:"החוקרים תיעדו עופות בשני אתרי מחקר: תחנת המחקר בדור, סמוך לחוף, ומדגה עין הנצי״ב בעמק המעיינות.",
- body:`
- <div class="science-box">הנתונים הבאים הם סיכום נוכחות המינים בתקופת הפרויקט, כפי שמופיע בטבלה 6 בדוח. מקף מציין שהמין לא תועד בטבלה באתר זה; אין פירושו שלא היה יכול להופיע בו לעולם.</div>
- <table class="data-table">
- <tr><th>מין</th><th>תחנת דור</th><th>עין הנצי״ב</th></tr>
- <tr><td>מגלנים</td><td>כ-20</td><td>נוכחות נמוכה</td></tr>
- <tr><td>ברכיות</td><td>עד 20</td><td>נוכחות נמוכה</td></tr>
- <tr><td>אגמיות</td><td>לא תועדו</td><td>כ-200</td></tr>
- <tr><td>שחפי אגמים</td><td>כ-200</td><td>לא תועדו</td></tr>
- </table>
- <div class="question">השוו בין שני האתרים:</div>
- <p>הגרף מציג את המספרים המשוערים של שני המינים הבולטים בכל אתר.</p>
- <div class="chart">
-  <div class="bar-group"><div class="bar" style="height:100%"><strong>200</strong></div><div class="bar-label">שחפים<br>דור</div></div>
-  <div class="bar-group"><div class="bar" style="height:10%"><strong>20</strong></div><div class="bar-label">מגלנים<br>דור</div></div>
-  <div class="bar-group"><div class="bar" style="height:100%"><strong>200</strong></div><div class="bar-label">אגמיות<br>עין הנצי״ב</div></div>
- </div>
- <div class="chart-note">העמודות מציגות ערכים משוערים מתוך דוח המחקר. אין להשוות ביניהן כאילו מדובר בספירה אחידה של כלל העופות בכל אתר.</div>`,
- question:"איזו מסקנה היא הזהירה והמבוססת ביותר על הנתונים?",
- options:[
- ["בכל בריכות הדגים בישראל יש בדיוק 200 עופות מכל מין","הנתונים מתייחסים לשני אתרי המחקר בלבד, ולא לכל בריכות ישראל."],
- ["הרכב מיני העופות שתועדו שונה בין שני אתרי המחקר","נכון. בדור בלטו שחפים, ובעין הנצי״ב אגמיות."],
- ["האגמיות נמנעות מבריכות דגים באזור החוף","אין די נתונים כדי לקבוע זאת."],
- ["ההבדל נגרם בוודאות מהפעלת מערכת ההרחקה","הטבלה מתארת נוכחות באתרים ואינה מוכיחה שהמערכת גרמה להבדל."]
- ],correct:1,
- explain:"הנתונים מצביעים על הבדלים בין האתרים. הם אינם מוכיחים מה גרם להבדלים, ואינם מייצגים בהכרח את כל בריכות הדגים."
-},
-{
- title:"הדגים מגיבים: האם הפתרון פוגע גם בהם?",
- tag:"תחנה 3 · קריאת גרף והסקה",
- intro:"המערכת פועלת באמצעות צינוריות גמישות שמונעות באוויר דחוס. אבל גם הדגים עשויים להגיב לתנועת הצינוריות.",
- body:`
- <div class="science-box">בניסוי בדגי באס נמדד הזמן שעבר מרגע הפסקת פעולת הצינוריות ועד שהדגים חזרו לאכול. בדוח מוצגים ערכים מקורבים: עם החזרות על ההפעלה התקצר זמן החזרה לאכילה.</div>
- <p><b>זמן משוער עד חזרת דגי הבאס לאכילה:</b></p>
- <div class="chart">
-  <div class="bar-group"><div class="bar" style="height:90%"><strong>45</strong></div><div class="bar-label">הפעלות<br>1–2</div></div>
-  <div class="bar-group"><div class="bar" style="height:40%"><strong>20</strong></div><div class="bar-label">הפעלות<br>3–4</div></div>
-  <div class="bar-group"><div class="bar" style="height:30%"><strong>15</strong></div><div class="bar-label">הפעלות<br>5–6</div></div>
-  <div class="bar-group"><div class="bar" style="height:20%"><strong>10</strong></div><div class="bar-label">הפעלות<br>7–8</div></div>
- </div>
- <div class="chart-note">הערכים נקראים בקירוב מגרף 5 בדוח. מדובר בזמן עד חזרת הדגים לאכילה לאחר הפסקת פעולת המערכת.</div>
- <p>החוקרים מצאו שהרתיעה של הדגים לא נעלמה לחלוטין. במערכת תלויה שנבדקה בעין הנצי״ב לא נצפתה אותה רתיעה אצל דגי הבאס. קרפיונים בבריכה עם מערכת צפה המשיכו לאכול גם בזמן ההפעלה.</p>`,
- question:"איזו מסקנה מתאימה ביותר לגרף ולתיאור הניסוי?",
- options:[
- ["הדגים התרגלו לחלוטין למערכת ואין עוד השפעה עליהם","לא נכון. בדוח נאמר שהרתיעה לא נעלמה."],
- ["זמן החזרה לאכילה התקצר, אך אין בכך הוכחה שהרתיעה נעלמה","נכון. הנתונים מצביעים על שיפור הדרגתי, לא על היעלמות מלאה של התגובה."],
- ["המערכת גרמה לדגים לאכול יותר מאשר לפני הניסוי","הגרף אינו מציג כמות מזון שנאכלה."],
- ["כל סוגי הדגים מגיבים באותה צורה לכל דגם מערכת","הדוח מתאר תגובות שונות בין מינים ובין דגמי מערכת."]
- ],correct:1,
- explain:"הזמן התקצר מכ-45 שניות לכ-10 שניות, אך הדוח מציין שהרתיעה לא נעלמה. בנוסף, התגובה השתנתה בין דגי באס לקרפיונים ובין דגמים שונים."
-},
-{
- title:"הנדסה ותזמון: מפעילים בחוכמה",
- tag:"תחנה 4 · תכנון טכנולוגי",
- intro:"המערכת אינה מרחיקה עופות באמצעות פגיעה בהם. אוויר דחוס מוזרם לצינורות גמישים, היוצרים תנועה שמרתיעה את העופות מאזור ההאכלה.",
- body:`
- <div class="science-box"><b>איך המערכת פועלת?</b><br>
- מדחס → צנרת אספקת אוויר → צינוריות גמישות → מערכת פיקוד להפעלה מרחוק.</div>
- <div class="simulator">
-  <b>סימולציה: מה קורה כשמפעילים את הצינוריות?</b>
-  <div class="pond" id="pond">
-   <div class="pipe"></div><div class="wave"></div>
-   <div class="bird" id="bird">🕊️</div>
-   <div class="fish" id="fish" style="left:35%">🐟</div>
-   <div class="fish" style="left:62%">🐟</div>
-  </div>
-  <div class="sim-controls">
-   <button class="secondary" id="toggleSim">הפעל מערכת</button>
-   <span id="simStatus">המערכת כבויה</span>
-  </div>
-  <div class="sim-result" id="simText">הפעילו את המערכת וצפו בתגובה המודגמת. זוהי המחשה סכמטית ולא מדידה מתוך הניסוי.</div>
- </div>
- <p><b>במחקר נבדקו שלושה משטרי הפעלה:</b></p>
- <table class="data-table">
- <tr><th>משטר</th><th>אוויר דחוס</th><th>הפסקה</th></tr>
- <tr><td>1</td><td>3 שניות</td><td>10 שניות</td></tr>
- <tr><td>2</td><td>3 שניות</td><td>10 שניות</td></tr>
- <tr><td>3</td><td>4 שניות</td><td>8 שניות</td></tr>
- </table>
- <p class="chart-note">המשטרים נבדלו גם באופן הפעלת קווי הצינוריות. בטבלה מוצגים זמני הפעולה וההפסקה בלבד.</p>`,
- question:"מדוע כדאי להפעיל את המערכת בסנכרון עם זמני ההאכלה ולא ברציפות לאורך כל היום?",
- options:[
- ["כדי להפעיל את המדחס כמה שיותר זמן","הפעלה ממושכת אינה בהכרח יעילה וחוסכת אנרגיה."],
- ["כדי להרתיע עופות בזמן הרלוונטי ולצמצם הפעלה מיותרת","נכון. תזמון מאפשר להתמקד בזמן שבו המזון מוגש."],
- ["כדי למנוע מהדגים לאכול את המזון","המטרה היא לאפשר לדגים לאכול, לא למנוע זאת."],
- ["כדי לגרום לכל העופות לעזוב את האזור לצמיתות","המחקר בחן הרחקה בזמן ההאכלה, ולא הבטיח הרחקה לצמיתות."]
- ],correct:1,
- explain:"תזמון סביב ההאכלה עשוי להפחית בזבוז אנרגיה ולהרחיק עופות דווקא בזמן שבו המזון חשוף. יש לבדוק במקביל שהדגים ממשיכים לאכול."
-},
-{
- title:"החלטת החוקרים: מציעים פתרון",
- tag:"תחנה 5 · חשיבה מערכתית",
- intro:"כעת אתם צוות המחקר. עליכם להציע דרך פעולה שמאזנת בין שלושה צרכים: שמירה על מזון הדגים, רווחת הדגים ושמירה על עופות המים.",
- body:`
- <div class="science-box"><b>ממצאים שחשוב לזכור:</b>
- <ul>
- <li>מינים שונים של עופות ניזונים בדרכים שונות.</li>
- <li>נוכחות העופות שונה בין אתרי המחקר.</li>
- <li>מערכת ההרחקה יכולה להרתיע עופות, אך תגובת הדגים תלויה בדגם ובמין.</li>
- <li>תזמון ההפעלה הוא מרכיב חשוב בתכנון המערכת.</li>
- </ul></div>
- <p>במחקר נבדקו גם דגמים שונים: טבעת צפה, טבלה צפה וצינוריות תלויות. בדגם התלוי בעין הנצי״ב לא נצפתה רתיעה של דגי הבאס בזמן ההפעלה, ובבריכת הקרפיונים עם טבלה צפה לא נצפתה הפסקת אכילה.</p>`,
- question:"איזו תוכנית ניסוי הייתם מציעים לפני התקנת המערכת בכל בריכות המדגה?",
- options:[
- ["להתקין מיד את אותו דגם בכל הבריכות ולבדוק רק אם העופות נעלמו","התוכנית מתעלמת מהבדלים בין בריכות ומהשפעה אפשרית על הדגים."],
- ["לבחור דגם לפי מין העופות בלבד, בלי לבדוק את תגובת הדגים","צריך לבדוק גם את התנהגות הדגים ואת הצלחת ההזנה."],
- ["להשוות בין בריכות ביקורת לבריכות עם מערכת, למדוד נוכחות עופות, אכילת דגים ועלויות, ולבדוק כמה אתרים","נכון. כך בוחנים את התועלת לצד ההשפעות וההבדלים בין אתרים."],
- ["להפעיל את המערכת ברציפות ולספור רק את מספר הציפורים","ספירת עופות לבדה אינה מספיקה להערכת הצלחת הפתרון."]
- ],correct:2,
- explain:"תוכנית מחקר טובה כוללת קבוצת ביקורת, מדדים אחדים, בדיקת תגובת הדגים, בחינת עלויות וחזרה על הבדיקה בתנאים שונים."
-}
-];
-
-function render(){
- const s=stations[state.step];
- document.querySelectorAll(".navitem").forEach((n,i)=>{
-  n.classList.toggle("active",i===state.step);
-  n.classList.toggle("done",state.done[i]);
-  n.querySelector(".navnum").textContent=state.done[i]?"✓":i+1;
- });
- document.getElementById("progressText").textContent=`תחנה ${state.step+1} מתוך 5`;
- document.getElementById("scoreText").textContent=`${state.done.filter(Boolean).length} תחנות הושלמו`;
- document.getElementById("progressBar").style.width=(state.done.filter(Boolean).length/5*100)+"%";
-
- const content=document.getElementById("content");
- if(state.step===5){content.innerHTML=finish();return}
- content.innerHTML=`
-  <div class="station-tag">${s.tag}</div>
-  <h2>${s.title}</h2>
-  <p class="lead">${s.intro}</p>
-  ${s.body}
-  <div class="question">${s.question}</div>
-  <div class="options" id="options">
-   ${s.options.map((o,i)=>`<button class="option" data-choice="${i}">${String.fromCharCode(אChar(i))}. ${o[0]}</button>`).join("")}
-  </div>
-  <div class="feedback" id="feedback"></div>
-  <button class="primary" id="check" disabled>בדיקת תשובה</button>
-  <button class="primary hidden" id="next">המשך לתחנה הבאה ←</button>
- `;
- let selected=null;
- document.querySelectorAll(".option").forEach(btn=>btn.addEventListener("click",()=>{
-  if(state.done[state.step])return;
-  selected=Number(btn.dataset.choice);
-  document.querySelectorAll(".option").forEach(b=>b.classList.remove("selected"));
-  btn.classList.add("selected");
-  document.getElementById("check").disabled=false;
- }));
- document.getElementById("check").addEventListener("click",()=>{
-  if(selected===null)return;
-  const ok=selected===s.correct;
-  const fb=document.getElementById("feedback");
-  fb.className="feedback "+(ok?"good":"bad");
-  fb.innerHTML=(ok?"✓ התשובה נכונה. ":"נסו שוב. ")+
-    (ok?s.explain:s.options[selected][1]);
-  if(ok){
-   state.done[state.step]=true;
-   document.getElementById("check").classList.add("hidden");
-   document.querySelectorAll(".option").forEach(b=>b.disabled=true);
-   document.getElementById("next").classList.remove("hidden");
-   updateProgress();
-  }
- });
- document.getElementById("next").addEventListener("click",()=>{
-  state.step++;
-  render();
- });
- if(state.step===3)setupSim();
-}
-function אChar(n){return 65+n}
-function updateProgress(){
- document.getElementById("scoreText").textContent=`${state.done.filter(Boolean).length} תחנות הושלמו`;
- document.getElementById("progressBar").style.width=(state.done.filter(Boolean).length/5*100)+"%";
-}
-function setupSim(){
- const pond=document.getElementById("pond");
- const btn=document.getElementById("toggleSim");
- let active=false;
- btn.addEventListener("click",()=>{
-  active=!active;
-  pond.classList.toggle("active",active);
-  btn.textContent=active?"הפסק מערכת":"הפעל מערכת";
-  document.getElementById("simStatus").textContent=active?"המערכת פועלת":"המערכת כבויה";
-  document.getElementById("simText").textContent=active?
-  "המחשה: תנועת הצינוריות מרתיעה את העוף מאזור ההאכלה. גם הדגים עשויים להגיב לתנועה, ולכן נדרשת בדיקה של השפעת המערכת עליהם.":
-  "המערכת כבויה. בסיום ההפעלה העופות עשויים לחזור לאזור, ולכן יש חשיבות לתזמון.";
- });
-}
-function finish(){
- return `
- <div class="station-tag">החקירה הושלמה</div>
- <h2>פענחתם את התעלומה!</h2>
- <p class="lead">הצלחתם לעבור מחקר, לנתח נתונים, לבחון פתרון הנדסי ולהציע תוכנית ניסוי המבוססת על ראיות.</p>
- <div class="final-lock">
-  <div class="big">🔬</div>
-  <h2>צוות מחקר מצטיין</h2>
-  <p>הבנתם שפתרון סביבתי טוב אינו מסתפק בהרחקת העופות. עליו להביא בחשבון גם את הדגים, את החקלאים ואת המערכת האקולוגית.</p>
- </div>
- <div class="science-box">
- <b>שאלת המשך למחשבה:</b><br>
- אילו הייתם ממשיכים את המחקר, איזה מדד נוסף הייתם מודדים כדי לבדוק אם הפתרון באמת מועיל לאורך זמן?
- </div>
- <button class="secondary" onclick="state.step=0;state.done=[false,false,false,false,false];render()">התחלה מחדש</button>
- <p class="chart-note">מקור מדעי: עינב בנט ואלון נאור, משרד החקלאות, סיכום מחקר 21-3002-870, ינואר 2023.</p>
- `;
-}
-document.querySelectorAll(".navitem").forEach(n=>{
- n.addEventListener("click",()=>{
-  const i=Number(n.dataset.step);
-  if(i<=state.step || state.done[i]){state.step=i;render()}
- });
-});
+const COL=['#ef4444','#f59e0b','#eab308','#22c55e','#0ea5e9','#8b5cf6'],NAMES=['זירת האירוע','טביעת הרגל','עדות הדגים','מנגנון ההרחקה','חדר הבקרה','ישיבת החירום'],HE='אבגד',WHY=['לפני שבוחרים פתרון צריך לדעת איך כל עוף משיג מזון. אחרת נבחר פתרון שלא יעבוד.','בודקים אם הבעיה זהה בכל אתר, כדי לדעת אם פתרון אחד יכול להתאים לכולם.','פתרון טוב צריך להרחיק עופות בלי למנוע מהדגים לאכול ולגדול.','כדי להעריך עלות ותחזוקה צריך להבין איך המערכת בנויה.','המועד שבו מפעילים את המערכת משפיע על היעילות ועל העלות.','כאן מחברים את כל הראיות להמלצה אחת, ובוחרים איך לבדוק אותה נכון.'];
+const S={step:0,done:Array(6).fill(false),pts:0,t0:Date.now(),snd:true,ord:{},wrong:0,hints:0,dial:0};
+try{const v=JSON.parse(localStorage.getItem('fishops')||'null');if(v&&v.done){S.done=v.done;S.pts=v.pts||0;S.step=S.done.indexOf(false)<0?5:S.done.indexOf(false)}}catch(e){}
+const $=id=>document.getElementById(id),shuf=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+let AC;function beep(f,d=.15,tp='sine'){if(!S.snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=tp;o.frequency.value=f;g.gain.value=.08;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+function boom(){const c=$('cf'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const p=Array.from({length:130},()=>({x:innerWidth/2,y:innerHeight/3,vx:(Math.random()-.5)*15,vy:Math.random()*-13-2,c:`hsl(${Math.random()*360},90%,60%)`,s:5+Math.random()*6}));let f=0;(function a(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.35;x.fillStyle=q.c;x.fillRect(q.x,q.y,q.s,q.s)});if(++f<110)requestAnimationFrame(a);else x.clearRect(0,0,c.width,c.height)})()}
+function save(){try{localStorage.setItem('fishops',JSON.stringify({done:S.done,pts:S.pts}))}catch(e){}}
+(function bg(){let h='';for(let i=0;i<22;i++){const s=8+Math.random()*26;h+=`<span class="bub" style="width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:-${Math.random()*15}s"></span>`}['🐠','🐟','🐡','🦈'].forEach((f,i)=>h+=`<span class="sw" style="top:${15+i*20}%;animation-duration:${25+i*9}s;animation-delay:-${i*7}s">${f}</span>`);$('bg').innerHTML=h})();
+setInterval(()=>{const s=Math.floor((Date.now()-S.t0)/1000);$('timer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},1000);
+$('pel').innerHTML=Array.from({length:14},(_,i)=>`<i class="pel" style="left:${12+i*5.5}%;animation-delay:${(i%7)*.25}s"></i>`).join('');
+$('snd').onclick=()=>{S.snd=!S.snd;$('snd').textContent=S.snd?'🔊':'🔇'};
+const tasks=[
+{tag:"ראיה 01 · זירת האירוע",title:"מי מגיע אל המזון?",intro:"במצלמות הבריכה נראו ארבעה מיני עופות. החוקרים צריכים להבין כיצד כל אחד מגיע למזון לפני שבוחרים אמצעי הרחקה.",body:`<div class="brief"><b>תיק תצפית:</b> לא כל עוף משתמש באותה אסטרטגיה. יש עופות שמחפשים מזון במים רדודים, יש שמסננים מזון מפני המים, ויש שמגיעים בשחייה או בתעופה.</div><table class="table"><tr><th>מין</th><th>איך מגיע למזון</th><th>כמה קשה להרתיע אותו?</th></tr><tr><td>🦩 מגלן חום</td><td>הולך בשולי הבריכה במים רדודים (עד כ־30 ס״מ) ואוכל גלולות שהגיעו לגדות</td><td>לחץ נמוך יחסית, אך מנצל כל הזדמנות</td></tr><tr><td>🦆 ברכיה</td><td>שוחה ומסננת מזון צף מהשכבה העליונה</td><td>נרתעת בקלות</td></tr><tr><td>🦢 אגמיה</td><td>שוחה במהירות ובנחישות אל המזון</td><td>לחץ רב, לא נרתעת בקלות וחוזרת שוב ושוב</td></tr><tr><td>🕊️ שחף אגמים</td><td>צד ואוכל בתעופה ובשחייה, בלהקות של מאות ואלפים</td><td>הקשוח והפיקח ביותר</td></tr></table><p class="note">המשימה: לזהות את העיקרון שמנחה תכנון של פתרון ממוקד.</p>`,q:"איזה נתון הוא החשוב ביותר לפני שמתכננים אמצעי הרחקה?",opts:["מספר העופות בלבד","דרך ההגעה למזון והתנהגות המין","צבע הנוצות של העופות","שעת הזריחה בלבד"],correct:1,why:"התנהגות ודרך השגת המזון משפיעות על התאמת האמצעי. פתרון שמתאים לעוף שמגיע בשחייה לא בהכרח יתאים לעוף שמלקט בשולי המים.",clue:"4"},
+{tag:"ראיה 02 · השוואת אתרים",title:"טביעת הרגל האקולוגית",intro:"שתי מצלמות תיעדו אתרי מחקר שונים: תחנת דור ומדגה עין הנצי״ב. האם הרכב העופות זהה?",body:`<div class="brief">הטבלה מסכמת תיעודים מדוח המחקר. הערכים מקורבים. "לא תועדו" פירושו שהמין לא תועד בטבלה באתר הזה — לא הוכחה להיעדר מוחלט.</div><table class="table"><tr><th>מין</th><th>תחנת דור</th><th>עין הנצי״ב</th></tr><tr><td>מגלנים</td><td>כ־20</td><td>נוכחות נמוכה</td></tr><tr><td>ברכיות</td><td>עד 20</td><td>נוכחות נמוכה</td></tr><tr><td>אגמיות</td><td>לא תועדו</td><td>כ־200</td></tr><tr><td>שחפי אגמים</td><td>כ־200</td><td>לא תועדו</td></tr></table><div class="chart"><div class="bargrp"><div class="bar" style="height:100%"><b>200</b></div><div class="barlabel">שחפים<br>דור</div></div><div class="bargrp"><div class="bar" style="height:10%"><b>20</b></div><div class="barlabel">מגלנים<br>דור</div></div><div class="bargrp"><div class="bar" style="height:100%"><b>200</b></div><div class="barlabel">אגמיות<br>עין הנצי״ב</div></div></div><div class="note">העמודות מציגות ערכים משוערים שסוכמו מן הדוח; אין להסיק מהן על כלל העופות בכל אתר או בכל הארץ.</div>`,q:"איזו מסקנה נתמכת בצורה הטובה ביותר בנתונים?",opts:["בכל בריכות הדגים בישראל יש 200 עופות מכל מין","הרכב המינים שתועדו שונה בין שני אתרי המחקר","המערכת גרמה בוודאות להבדל בין האתרים","אגמיות אינן מגיעות לעולם לאזור החוף"],correct:1,why:"הנתונים מצביעים על הבדלים בין שני האתרים. הם אינם מוכיחים מה גרם להבדל ואינם מייצגים את כל בריכות ישראל. לפי הדוח, ההבדל תואם את הפיזור הרגיל: אגמיות דומיננטיות בעמק המעיינות, ושחפי אגמים לאורך החוף.",clue:"2"},
+{tag:"ראיה 03 · תגובת הדגים",title:"עדות הדגים: מה מספר הגרף?",intro:"קודם נבין מה זה \"צינוריות\", ואז נקרא את הגרף: האם הדגים מפחדים מהן?",body:`<div class="brief"><b>מה זה צינוריות?</b> אלה צינורות פלסטיק גמישים וארוכים שמותקנים באזור שבו מאכילים את הדגים. מדחס דוחף לתוכם אוויר דחוס, והם מצליפים ומתנועעים בכוח לכל הכיוונים. העוף רואה את תנועת ההצלפה ומפחד להתקרב, בלי שפוגעים בו. כשהאוויר נעצר הצינוריות נרפות.</div><div class="sim"><b>🎈 נסו בעצמכם: הפעילו את האוויר</b><div class="flow"><span>🏭 מדחס<br><small>דוחס אוויר</small></span><span>⬅</span><span>〰️ צנרת<br><small>מובילה את האוויר</small></span><span>⬅</span><span>🎈 צינוריות<br><small>מצליפות בכוח</small></span></div><div class="pond" id="tpond"><div class="tbs"><i class="tb"></i><i class="tb"></i><i class="tb"></i><i class="tb"></i><i class="tb"></i><i class="tb"></i></div><div class="bird">🦢</div><div class="fish" style="left:30%">🐟</div><div class="fish" style="left:60%">🐠</div></div><div class="controls"><button class="secondary" id="tBtn">💨 הפעל אוויר</button><span id="tTxt">האוויר כבוי: הצינוריות רפויות והעוף רגוע.</span></div></div><div class="brief"><b>🧩 מהו "דגם"?</b> דגם הוא דרך שונה להתקין את אותה מערכת. בדוח נבדקו שלושה:<ul><li><b>טבעת צפה</b> – טבעת בקוטר 4 מטרים שצפה על המים, ובתוכה מגישים את המזון. מותקנות עליה 3 צינוריות. מתאימה לבריכות קטנות.</li><li><b>טבלה צפה</b> – מסגרת צינורות בגודל 20×20 מטר שצפה סביב מפזרת המזון, עם צינוריות מחוברות אליה. מתאימה לבריכות גדולות.</li><li><b>צינוריות תלויות</b> – הצינורות תלויים על כבלי פלדה שנמתחים מעל הבריכה. זה הדגם שבאנימציה.</li></ul><b>מה נמדד על כל דגם?</b> דגי באס נבחנו עם הטבעת הצפה (זה הגרף שלפניכם) ועם הדגם התלוי. קרפיונים נבחנו עם הטבלה הצפה.</div><div class="brief"><b>איך קוראים את הגרף?</b> כל פעם שהצינוריות הופסקו, החוקרים מדדו כמה שניות עברו עד שהדגים חזרו לאכול. אם המספר גדול — הדגים נבהלו הרבה זמן. אם המספר קטן — הם חוזרים לאכול מהר. "הפעלות 1–2" הן הפעמים הראשונות, ו"הפעלות 7–8" אחרי שהדגים כבר ראו את המערכת הרבה פעמים.</div><div class="chart"><div class="bargrp"><div class="bar" style="height:100%"><b>45 שנ׳</b></div><div class="barlabel">הפעלות<br>1–2</div></div><div class="bargrp"><div class="bar" style="height:44%"><b>20 שנ׳</b></div><div class="barlabel">הפעלות<br>3–4</div></div><div class="bargrp"><div class="bar" style="height:33%"><b>15 שנ׳</b></div><div class="barlabel">הפעלות<br>5–6</div></div><div class="bargrp"><div class="bar" style="height:22%"><b>10 שנ׳</b></div><div class="barlabel">הפעלות<br>7–8</div></div></div><p><b>ומה קרה בדגמים האחרים?</b> בדגם התלוי (מדגה עין הנצי״ב) דגי הבאס לא נרתעו והמשיכו לאכול גם כשהצינוריות פעלו. גם הקרפיונים, בבריכה עם טבלה צפה, לא הפסיקו לאכול. לכן החוקרים העדיפו את הדגם התלוי עבור דגי באס.</p>`,q:"מה אפשר ללמוד מהגרף?",opts:["הדגים התרגלו לגמרי, ואין עוד שום השפעה","עם הזמן הדגים חוזרים לאכול מהר יותר, אבל הרתיעה לא נעלמה לגמרי","הדגים אוכלים יותר בזמן שהצינוריות פועלות","כל סוגי הדגים מגיבים בדיוק אותו דבר"],correct:1,why:"זמן החזרה התקצר מכ־45 לכ־10 שניות, אך הדוח מדגיש שהרתיעה לא נעלמה. התגובה תלויה גם במין הדג ובדגם המערכת.",clue:"8"},
+{tag:"ראיה 04 · הנדסה",title:"איך פועלת מערכת ההרחקה?",intro:"הגיע הזמן לפתוח את תרשים המערכת. זהו פתרון הנדסי המבוסס על אוויר דחוס ותנועה של צינוריות גמישות.",body:`<div class="brief"><b>שרשרת הפעולה:</b> מדחס ← צנרת אספקת אוויר ← צינוריות גמישות ← מערכת פיקוד. תנועת ההצלפה של הצינוריות מרתיעה עופות מאזור ההאכלה. אין מדובר במערכת שנועדה לפגוע בעופות.</div><table class="table"><tr><th>משטר הפעלה</th><th>אוויר זורם</th><th>הפסקה</th><th>אילו קווים פועלים?</th></tr><tr><td>1</td><td>3 שניות</td><td>10 שניות</td><td>קו אחר קו, ממערב למזרח, וחוזר חלילה</td></tr><tr><td>2</td><td>3 שניות</td><td>10 שניות</td><td>בכל פעם קו אחר, באופן אקראי</td></tr><tr><td>3</td><td>4 שניות</td><td>8 שניות</td><td>כל הקווים יחד</td></tr></table><div class="brief"><b>למה משטרים 1 ו־2 נראים זהים?</b> כי הזמנים שלהם זהים: 3 שניות אוויר ו־10 שניות הפסקה. ההבדל הוא <b>איזה קו צינוריות פועל בכל פעם</b>. "קו" הוא שורה של צינוריות, וכל קו אפשר להפעיל בנפרד. במשטר 1 הקווים פועלים בסדר קבוע, ובמשטר 2 בסדר אקראי.</div><div class="note">הנתונים: טבלה 3 בדוח, דגם הטבלה הצפה, בבריכה סמי־מסחרית בתחנת דור. כל משטר התחיל יחד עם המאביס (המכשיר שמפזר את המזון) והסתיים 2 דקות אחרי שהמאביס הפסיק.</div>`,q:"איזה רכיב מספק את האנרגיה שמניעה את הצינוריות?",opts:["מדחס האוויר","מסנן תוף","משאבת דגים","מד טמפרטורה"],correct:0,why:"המדחס מספק אוויר דחוס, שמוזרם בצנרת אל הצינוריות הגמישות.",clue:"1"},
+{tag:"ראיה 05 · סימולציה",title:"חדר הבקרה: בחרו מתי להפעיל",intro:"הדמיה סכמטית מאפשרת לבדוק את רעיון התזמון. זו המחשה לימודית ולא שחזור מדידה מן המחקר.",body:`<div class="sim"><b>🎛️ סימולציית בריכת הדגים</b><div class="pond" id="pond"><div class="tube"></div><div class="bird">🦢</div><div class="fish" style="left:28%">🐟</div><div class="fish" style="left:52%">🐠</div><div class="fish" style="left:70%">🐟</div></div><div class="controls"><button class="secondary" id="simBtn">▶ הפעל מערכת</button><button class="secondary" id="modeBtn">מצב: רציף כל היום</button><span id="simStatus">המערכת כבויה</span></div><div class="simresult" id="simText">העופות באזור ההאכלה. הדגים שוחים בבריכה.</div><div class="note" style="color:#c5ece7;margin-top:10px">12 שעות פעילות ביום (מסגרת צהובה = שעות הגשת מזון)</div><div class="days" id="days"></div><div class="simresult" id="dayText"></div><div class="note" style="color:#c5ece7;margin-top:10px">🐦 בדוח נמצא שעופות מסתגלים לתבנית קבועה: שחפים למדו לרדת למים בדיוק בהפסקות. רק הפעלה רציפה של כל הצינוריות יחד, או הפעלה מיידית כשעוף מתקרב, הגנו על המזון מפניהם.</div></div>`,q:"מהו היתרון המרכזי בתזמון ההפעלה לזמן ההאכלה?",opts:["להפעיל את המדחס כמה שיותר זמן","להרתיע עופות בזמן הרלוונטי ולצמצם הפעלה מיותרת","למנוע מהדגים לאכול","להבטיח שכל העופות יעזבו לצמיתות"],correct:1,why:"תזמון סביב ההאכלה עשוי למקד את ההרתעה ולצמצם הפעלה מיותרת. יש לבדוק במקביל שהדגים ממשיכים לאכול.",clue:"6"},
+{tag:"ראיה 06 · החלטה מדעית",title:"ישיבת החירום: בונים ניסוי הוגן",intro:"כל הראיות נאספו. כעת עליכם להמליץ כיצד לבדוק אם הפתרון מתאים לבריכות נוספות — בלי להסתפק בספירת עופות בלבד.",body:`<div class="brief"><b>סיכום ממצאים:</b><ul><li>מיני עופות שונים ניזונים בדרכים שונות.</li><li>נוכחות המינים שתועדה שונה בין האתרים.</li><li>תגובת הדגים תלויה במין ובדגם המערכת.</li><li>לתזמון ההפעלה יש חשיבות.</li><li>שחפים ואגמיות מסתגלים לתבנית קבועה, ולכן מתאימה להם הפעלה רציפה.</li><li>עלות: כיסוי מלא ברשת עלה כ־15,000 ₪ לדונם (2022), והמערכת התלויה עדיין הייתה יקרה יותר.</li></ul></div><p>במחקר נבדקו שלושה דגמים (טבעת צפה, טבלה צפה וצינוריות תלויות), ולא התקבלה תגובה זהה בכל המינים והדגמים.</p><div class="brief"><b>הניסוי בפועל:</b> בתחנת דור הוקמו 12 בריכות קטנות: בריכות עם מערכת הרחקה, בריכות עם כיסוי רשת מלא (ביקורת א׳), ובריכות עם כבלים בלבד וללא הרחקה (ביקורת ב׳). החוקרים שקלו את דגי הבאס כל 14 יום.</div><b>משקל סופי ממוצע של דגי באס אחרי 175 ימים (גרם):</b><div class="chart"><div class="bargrp"><div class="bar" style="height:50%"><b>166</b></div><div class="barlabel">כבלים בלבד<br>(ביקורת ב׳)</div></div><div class="bargrp"><div class="bar" style="height:57%"><b>188</b></div><div class="barlabel">עם מערכת הרחקה<br>(טבעת צפה)</div></div><div class="bargrp"><div class="bar" style="height:100%"><b>331</b></div><div class="barlabel">כיסוי רשת מלא<br>(ביקורת א׳)</div></div></div><p class="note">לפי הדוח, המערכת הרחיקה ציפורים בהצלחה אך גם הפריעה לדגי הבאס לגשת למזון, ולכן פגעה בגדילה שלהם.</p>`,q:"איזו תוכנית ניסוי תספק את הבסיס הטוב ביותר להחלטה?",opts:["להתקין מיד אותו דגם בכל הבריכות ולספור רק עופות","לבחור דגם לפי מין העופות בלבד","להשוות בריכות ביקורת ובריכות עם מערכת, למדוד נוכחות עופות, אכילת דגים ועלויות, ולחזור על הבדיקה בכמה אתרים","להפעיל את המערכת כל היום בלי למדוד את תגובת הדגים"],correct:2,why:"ניסוי טוב כולל קבוצת ביקורת, כמה מדדים, בחינת תגובת הדגים, עלויות וחזרות בתנאים ובאתרים שונים.",clue:"3"}];
+function update(){const n=S.done.filter(Boolean).length,fu=S.done.indexOf(false)<0?6:S.done.indexOf(false);$('progressText').textContent=`ראיות שנאספו: ${n} מתוך 6`;$('scoreText').textContent=`⭐ ${S.pts} נקודות`;$('progressBar').style.width=(n/6*100)+'%';
+$('nav').innerHTML=NAMES.map((nm,i)=>`<div class="navitem ${i===S.step?'active':''} ${S.done[i]?'done':''} ${i>fu?'lockd':''}" style="--nc:${COL[i]}" data-step="${i}"><span class="num">${S.done[i]?'✓':i+1}</span><span class="label">${nm}</span></div>`).join('');
+document.querySelectorAll('.navitem').forEach(el=>el.onclick=()=>{const i=+el.dataset.step;if(i<=fu&&i<6){S.step=i;render()}})}
+function showLock(t,solved){const L=$('lock');L.classList.remove('hidden');L.innerHTML=`<b>🔐 מנעול הראיה</b><div class="key">הספרה שנחשפה לכם: <span>${t.clue}</span></div><div class="dial"><button id="up" aria-label="הוסף">▲</button><div class="digit" id="dg">${solved?t.clue:0}</div><button id="dn" aria-label="הפחת">▼</button></div><div class="unlock" id="ul">${solved?'🔓 הספרה אושרה!':'סובבו את הגלגל עד שהספרה תתאים'}</div>`;
+if(solved)return;const set=d=>{S.dial=(S.dial+d+10)%10;$('dg').textContent=S.dial;beep(300+S.dial*40,.06);if(String(S.dial)===t.clue){S.done[S.step]=true;S.pts+=Math.max(40,100-20*S.wrong-10*S.hints);save();$('ul').textContent='🔓 הספרה אושרה! +נקודות';$('up').disabled=$('dn').disabled=true;boom();[523,659,784].forEach((f,i)=>setTimeout(()=>beep(f,.25,'triangle'),i*120));$('next').classList.remove('hidden');update()}};$('up').onclick=()=>set(1);$('dn').onclick=()=>set(-1)}
+function render(){update();const el=$('content'),i=S.step;if(i===6){el.innerHTML=finish();bindFinal();return}
+const t=tasks[i],solved=S.done[i];S.wrong=0;S.hints=0;S.dial=0;S.ord[i]=S.ord[i]||shuf([0,1,2,3]);el.style.setProperty('--c',COL[i]);el.style.animation='none';el.offsetHeight;el.style.animation='';
+el.innerHTML=`<div class="tag">${t.tag}</div><h2>${t.title}</h2><p class="lead">${t.intro}</p><div class="why">🎯 <b>למה התחנה הזו?</b> ${WHY[i]}</div>${t.body}<div class="question">${t.q}</div><div class="opts">${S.ord[i].map((k,j)=>`<button class="opt ${solved&&k===t.correct?'right':''}" data-i="${k}" ${solved?'disabled':''}>${HE[j]}. ${t.opts[k]}</button>`).join('')}</div><div id="fb" class="feedback ${solved?'good':''}">${solved?'✓ '+t.why:''}</div><button class="hintbtn ${solved?'hidden':''}" id="hint">💡 רמז (‎−10 נקודות)</button><div id="hintText" class="note"></div><div id="lock" class="lock hidden"></div><button class="primary ${solved?'':'hidden'}" id="next">${i===5?'לפתיחת הכספת 🔓':'המשך למשימה הבאה ←'}</button>`;
+if(solved)showLock(t,true);
+el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(S.done[i]||S.locked)return;const fb=$('fb');if(+b.dataset.i===t.correct){b.classList.add('right');el.querySelectorAll('.opt').forEach(x=>x.disabled=true);fb.className='feedback good';fb.textContent='✓ נכון! '+t.why;$('hint').classList.add('hidden');beep(660,.2,'triangle');showLock(t,false)}else{S.wrong++;b.classList.add('wrong');b.disabled=true;fb.className='feedback bad';fb.textContent='עדיין לא. נסו שוב — קראו שוב את הנתונים.';beep(180,.25,'sawtooth')}});
+$('hint').onclick=()=>{S.hints++;$('hintText').textContent='רמז: חפשו את התשובה שמתייחסת לנתונים שנאספו — לא להנחה גורפת.'};
+$('next').onclick=()=>{S.step++;render();window.scrollTo({top:0,behavior:'smooth'})};
+if(i===4)initSim();if(i===2)initTube()}
+function initTube(){let on=false;$('tBtn').onclick=()=>{on=!on;$('tpond').classList.toggle('on',on);$('tBtn').textContent=on?'⏹ עצור אוויר':'💨 הפעל אוויר';$('tTxt').textContent=on?'האוויר פועל: הצינוריות מצליפות בכוח, והעוף מתרחק.':'האוויר כבוי: הצינוריות רפויות והעוף רגוע.';beep(on?440:260,.2)}}
+function initSim(){let on=false,timed=false;const F=[2,3,8,9],box=$('days');const draw=()=>{box.innerHTML=Array.from({length:12},(_,k)=>`<i class="${F.includes(k)?'f':''} ${on&&(!timed||F.includes(k))?'a':''}"></i>`).join('');const h=on?(timed?4:12):0;$('dayText').textContent=on?`המדחס פועל ${h} מתוך 12 שעות`+(timed?' — חיסכון של כ־67% בהפעלה (המחשה בלבד).':'. הפעלה רציפה מרתיעה גם כשאין צורך.'):''};
+$('simBtn').onclick=()=>{on=!on;$('pond').classList.toggle('on',on);$('simBtn').textContent=on?'■ כבה מערכת':'▶ הפעל מערכת';$('simStatus').textContent=on?'המערכת פועלת':'המערכת כבויה';$('simText').textContent=on?'המחשה: תנועת הצינוריות מרתיעה את העוף מאזור ההאכלה. גם הדגים עשויים להגיב, ולכן יש למדוד את התנהגותם.':'המערכת כבויה. עופות עשויים לחזור לאזור; לכן יש חשיבות לתזמון.';beep(on?440:260,.2);draw()};
+$('modeBtn').onclick=()=>{timed=!timed;$('modeBtn').textContent=timed?'מצב: רק בזמן ההאכלה':'מצב: רציף כל היום';draw()};draw()}
+function finish(){const code=S.done.every(Boolean)?['4','2','8','1','6','3'].join(''):'';const el=Math.floor((Date.now()-S.t0)/1000),st=S.pts>=540?3:S.pts>=400?2:1;setTimeout(boom,300);[392,523,659,784].forEach((f,i)=>setTimeout(()=>beep(f,.3,'triangle'),i*150));
+return `<div class="tag" style="--c:#8b5cf6">המשימה הושלמה · תיק החקירה נפתח</div><h2>פענחתם את התעלומה! 🎉</h2><p class="lead">אספתם שש ראיות, בחנתם את הממצאים והגעתם להחלטה המבוססת על נתונים.</p><div class="final"><div class="icon">🔓</div><h2 style="color:#fff">כספת המחקר נפתחה</h2><p>קוד הכספת שלכם:</p><div class="codes">${[...code].map((d,i)=>`<span style="animation-delay:${.4+i*.25}s">${d}</span>`).join('')}</div><div class="stars">${'⭐'.repeat(st)}${'☆'.repeat(3-st)}</div><p>${S.pts} נקודות · זמן: ${Math.floor(el/60)} דק׳ ${el%60} שנ׳</p><p>המשימה האמיתית אינה רק להרחיק עופות — אלא למצוא איזון בין הצלחת המדגה, רווחת הדגים ושמירה על עופות המים.</p></div>
+<div class="brief"><b>אתגר סיכום: בונים המלצה למנהל המדגה</b><br>בחרו מהרשימות, וההמלצה תיבנה בשבילכם.<div class="question" style="font-size:15px;margin:14px 0 4px">1. סמנו לפחות שתי ראיות שמצאתם:</div><label class="chk"><input type="checkbox" class="ck" value="עופות שונים ניזונים בדרכים שונות"> עופות שונים ניזונים בדרכים שונות</label><label class="chk"><input type="checkbox" class="ck" value="הרכב העופות שונה בין האתרים"> הרכב העופות שונה בין האתרים</label><label class="chk"><input type="checkbox" class="ck" value="הדגים חוזרים לאכול מהר יותר עם הזמן, אך הרתיעה לא נעלמה"> הדגים חוזרים לאכול מהר יותר עם הזמן, אך הרתיעה לא נעלמה</label><label class="chk"><input type="checkbox" class="ck" value="הפעלה בזמן ההאכלה מצמצמת הפעלה מיותרת"> הפעלה בזמן ההאכלה מצמצמת הפעלה מיותרת</label><div class="question" style="font-size:15px;margin:14px 0 4px">2. בחרו מגבלה של הנתונים:</div><select id="lim" class="sel"><option value="">בחרו...</option><option>הנתונים הגיעו משני אתרי מחקר בלבד</option><option>הערכים בגרפים הם משוערים</option><option>תגובת הדגים תלויה במין הדג ובדגם המערכת</option></select><div class="question" style="font-size:15px;margin:14px 0 4px">3. מה עוד כדאי למדוד בניסוי המשך?</div><select id="met" class="sel"><option value="">בחרו...</option><option>עלות החשמל והתחזוקה</option><option>כמות המזון שהדגים אכלו</option><option>מספר העופות שמגיעים לבריכה בכל שעה</option><option>קצב הגדילה של הדגים</option></select><div id="recok" class="unlock" style="color:#16a34a"></div><div id="recout" class="brief hidden"></div><button class="secondary" id="copy">📋 העתקת ההמלצה</button></div>
+<p class="credit" style="text-align:center;font-size:15px">✍️ פעילות מאת: מילכה ברקו גרש</p><p class="note">הנתונים מתייחסים לאתרי המחקר ולתנאים שנבדקו. אין להסיק מהם שכל דגם מתאים לכל בריכה או שכל העופות יורחקו לצמיתות.</p><button class="secondary" id="again">🔄 התחלה מחדש</button>`}
+function bindFinal(){const gen=()=>{const ev=[...document.querySelectorAll('.ck:checked')].map(c=>c.value),l=$('lim').value,m=$('met').value,o=$('recout');if(ev.length<2||!l||!m){o.classList.add('hidden');$('recok').textContent=ev.length<2?'סמנו לפחות שתי ראיות':'';return}$('recok').textContent='✅ ההמלצה מוכנה!';o.classList.remove('hidden');o.innerHTML='<b>📄 המלצה למנהל המדגה</b><br>מומלץ להמשיך לבחון את מערכת הצינוריות בניסוי מבוקר, עם בריכות ביקורת. הראיות שלנו: '+ev.join('; ')+'. מגבלה: '+l+'. בניסוי ההמשך נמדוד גם: '+m+'.'};document.querySelectorAll('.ck').forEach(c=>c.onchange=gen);$('lim').onchange=$('met').onchange=gen;
+$('copy').onclick=()=>{try{navigator.clipboard.writeText($('recout').textContent);$('copy').textContent='✓ הועתק'}catch(e){}};
+$('again').onclick=()=>{S.step=0;S.done=Array(6).fill(false);S.pts=0;S.ord={};S.t0=Date.now();save();render()}}
 render();
-</script>
-</body>
-</html>
+</script></body></html>
